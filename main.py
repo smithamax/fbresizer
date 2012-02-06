@@ -10,12 +10,29 @@ rots = {
 }
 
 
+def scale_size(size, width=None, height=None):
+    w, h = size
+    if width:
+        return (width, int((float(h) / w) * width))
+    if height:
+        return (int((float(w) / h) * height), height)
+    return size
+
+
 def resize_image(img, longside=960, width=None, height=None):
-    width, height = img.size
-    if width < height:
-        newsize = (int((float(width) / height) * longside), longside)
+    w, h = img.size
+    if height:
+        newsize = scale_size(img.size, height=height)
+    elif width:
+        newsize = scale_size(img.size, width=width)
+    elif longside:
+        if w < h:
+            newsize = scale_size(img.size, height=longside)
+        else:
+            newsize = scale_size(img.size, width=longside)
     else:
-        newsize = (longside, int((float(height) / width) * longside))
+        return img
+
     return img.resize(newsize, Image.ANTIALIAS)
 
 
