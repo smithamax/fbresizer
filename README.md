@@ -12,7 +12,7 @@ Python easy install.
 
     $ easy_install PIL
 
-apt-get
+or apt-get
 
     $ sudo apt-get python-imaging
 
