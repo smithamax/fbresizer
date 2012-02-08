@@ -22,7 +22,7 @@ Note that I had some problems getting the installer to work on windows with 64 b
 
 ---
 
-Once yo have PIL you can simply use the `main.py` or the `fbresizer` shell script.
+Once you have PIL you can simply use the `main.py` or the `fbresizer` shell script.
 From here on I'll be referring to `fbresizer` but you could also use `python main.py` if you're on windows.
 
 
