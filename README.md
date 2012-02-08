@@ -36,9 +36,9 @@ For a simple help use
 The flags avalible are:
 
 - __-l__ ___length___ resize image so the longest side is _length_.
-- __-w__ ___imgfile pos___ place a watermark image at _pos_. Watermarks can be positioned absolutly using an _x,y_ pair (no spaces) or using `tl` top left, `br` bottom right, `bl` bottom left or `tr` top right.
+- __-w__ ___imgfile pos___ place a watermark image at _pos_. Watermarks can be positioned absolutely using an _x,y_ pair (no spaces) or using `tl` top left, `br` bottom right, `bl` bottom left or `tr` top right.
 - __-o__ ___output___ put the resized copies in _output_ directory.
-- __-p__ ___prefix___ save the resized imges with _prefix_.
+- __-p__ ___prefix___ save the resized images with _prefix_.
 - __-v__ verbose mode, print the progress.
 - __--width__ ___width___ resize images to _width_.
 - __--height__ ___height___ resize images to _height_.
