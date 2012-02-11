@@ -1,6 +1,8 @@
 import Image
 import os
+import sys
 import argparse
+from glob import glob
 
 rots = {
     1: 0,
@@ -189,6 +191,9 @@ def main():
             )
 
     args = parser.parse_args()
+
+    if sys.platform == 'win32' and len(args.images) > 0:
+        args.images = glob(args.images[0])
     print args
     process_images(args)
 
