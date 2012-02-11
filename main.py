@@ -192,8 +192,13 @@ def main():
 
     args = parser.parse_args()
 
-    if sys.platform == 'win32' and len(args.images) > 0:
-        args.images = glob(args.images[0])
+    if sys.platform == 'win32':
+        newlist = []
+        while args.images:
+            blob = args.images.pop(0)
+            newlist.extend(glob(blob) or [blob])
+        args.images = newlist
+
     print args
     process_images(args)
 
