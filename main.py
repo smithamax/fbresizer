@@ -125,7 +125,7 @@ def get_orientation(img):
     # EXIF usage http://stackoverflow.com/a/765403/730767
     info = None
 
-    if img._getexif:
+    if img.format is 'JPEG':
         info = img._getexif()
 
     if info:
