@@ -23,6 +23,20 @@ def scale_size(size, width=None, height=None):
 
 def resize_image(img, longside=960, width=None, height=None):
     w, h = img.size
+
+    if height and width:
+        if float(w) / h > float(width) / height:
+            newsize = scale_size(img.size, height=height)
+            dw = newsize[0] - width
+            crop = dw / 2, 0, width + (dw / 2), height
+        else:
+            newsize = scale_size(img.size, width=width)
+            dh = newsize[1] - height
+            crop = 0, dh / 2, width, height + (dh / 2)
+
+        img = img.resize(newsize, Image.ANTIALIAS)
+        return img.crop(crop)
+
     if height:
         newsize = scale_size(img.size, height=height)
     elif width:
@@ -87,14 +101,12 @@ def process_images(args):
         img = Image.open(imagepath)
         img = fix_rotation(img)
 
-        if args.width:
-            img = resize_image(img, width=args.width)
-        elif args.longside:
-            img = resize_image(img, longside=args.longside)
-        elif args.height:
-            img = resize_image(img, height=args.height)
-        else:
-            img = resize_image(img)
+        img = resize_image(
+            img,
+            width=args.width,
+            height=args.height,
+            longside=args.longside
+        )
 
         for mark, pos in watermarks:
             watermark_image(img, mark, pos)
@@ -139,19 +151,17 @@ def show_image(img):
 def main():
     parser = argparse.ArgumentParser(description='')
 
-    resizers = parser.add_mutually_exclusive_group()
-
-    resizers.add_argument('--width',
+    parser.add_argument('--width',
             metavar='pixels', type=int,
             help=''
             )
 
-    resizers.add_argument('--height',
+    parser.add_argument('--height',
             metavar='pixels', type=int,
             help=''
             )
 
-    resizers.add_argument('-l', '--longside',
+    parser.add_argument('-l', '--longside',
             metavar='pixels', type=int,
             dest='longside',
             help=''
