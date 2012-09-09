@@ -49,7 +49,7 @@ Examples
 
 an example of resizing some images.
 
-    $ fbresizer -o output image.jpg
+    $ fbresizer -l 960 -o output image.jpg
 
 this will resize the images so the longest side is 960px (perfect for Facebook),
 and save it to the `output` directory

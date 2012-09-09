@@ -21,7 +21,7 @@ def scale_size(size, width=None, height=None):
     return size
 
 
-def resize_image(img, longside=960, width=None, height=None):
+def resize_image(img, longside=None, width=None, height=None):
     w, h = img.size
 
     if height and width:
